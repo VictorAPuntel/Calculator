@@ -48,9 +48,20 @@ main {
     cursor: pointer;
     background-color: #ef4444;
     color: #f3f4f6;
+    font-weight: bold;
     &:active {
       background-color: #ef4444bb;
       transform: scale(0.95);
+    }
+  }
+
+  .actionButtons {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+
+    & .actionImg {
+      padding: 0.25rem;
     }
   }
 
