@@ -28,27 +28,72 @@ header {
 }
 
 main {
-  width: 100%;
-  height: auto;
   & .calculatorBox {
     background-color: #1d1d1d;
     width: 100%;
-    height: 50vh;
+    height: 32vh;
     border-radius: 1rem;
+    padding: 1rem;
   }
 
   & .screen {
-    padding: 1rem;
-
+    width: 100%;
     & input {
-      width: 100%;
       height: 2rem;
+      width: 100%;
+      text-align: right;
+    }
+  }
+
+  & .clean {
+    margin: 1rem 0;
+    border: none;
+    border-radius: 0.125rem;
+    height: 2rem;
+    width: 4rem;
+    cursor: pointer;
+    background-color: #ef4444;
+    color: #f3f4f6;
+  }
+
+  & .calculatorButtons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.6rem;
+
+    & > button {
+      border: none;
+      border-radius: 0.25rem;
+      height: 2rem;
+      width: 4rem;
+      cursor: pointer;
+      font-size: 1.25rem;
     }
   }
 }
 
-aside {
-  width: 100%;
-  height: 50vh;
-  background: #585858;
+.numeric {
+  background-color: #f3f4f6;
+  color: #000000;
+}
+.numeric:hover {
+  background-color: #f3f4f6a2;
+}
+
+.operators {
+  background-color: #3b82f6;
+  color: #ffffff;
+  font-weight: bold;
+}
+.operators:hover {
+  background-color: #3b83f6b4;
+}
+
+.action {
+  background-color: #10b981;
+  color: #000000;
+}
+
+.action:hover {
+  background-color: #10b98196;
 }
