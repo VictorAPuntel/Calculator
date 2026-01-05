@@ -1,4 +1,6 @@
 const display = document.querySelector('#display')
+const historyEl = document.querySelector('#history')
+let history = []
 let firstValue = ''
 let secondValue = ''
 let operator = ''
@@ -23,22 +25,18 @@ function clicked(button) {
       if (firstValue !== '') {
         operator = button
         currentValue = 2
+        secondValue = ''
       }
       break
     case '.':
-      if (
-        currentValue === 1 &&
-        firstValue !== '' &&
-        !firstValue.includes('.')
-      ) {
-        firstValue += '.'
-      }
-      if (
-        currentValue === 2 &&
-        secondValue !== '' &&
-        !secondValue.includes('.')
-      ) {
-        secondValue += '.'
+      if (currentValue === 1) {
+        if (!firstValue.includes('.')) {
+          firstValue = firstValue === '' ? '0.' : firstValue + '.'
+        }
+      } else {
+        if (!secondValue.includes('.')) {
+          secondValue = secondValue === '' ? '0.' : secondValue + '.'
+        }
       }
       break
     case '0':
@@ -61,8 +59,10 @@ function clicked(button) {
     case '=':
       if (currentValue === 2 && secondValue !== '') {
         let result = calculate(firstValue, operator, secondValue)
+        history.push(`${firstValue} ${operator} ${secondValue} = ${result}`)
         reset()
-        firstValue = result
+        firstValue = String(result)
+        updateHistory()
       }
       break
   }
@@ -71,10 +71,10 @@ function clicked(button) {
 }
 
 function updateDisplay() {
-  if (firstValue === '') {
-    display.innerHTML = '0'
+  if (currentValue === 1) {
+    display.textContent = firstValue === '' ? '0' : firstValue
   } else {
-    display.innerHTML = firstValue + operator + secondValue
+    display.textContent = secondValue === '' ? '0' : secondValue
   }
 }
 
@@ -93,5 +93,15 @@ function calculate(first, op, second) {
       return first / second
     default:
       return 0
+  }
+}
+
+function updateHistory() {
+  historyEl.innerHTML = ''
+  for (let entry of history) {
+    const div = document.createElement('div')
+    div.classList.add('history-item')
+    div.textContent = entry
+    historyEl.appendChild(div)
   }
 }

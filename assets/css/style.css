@@ -67,3 +67,24 @@ body {
 .key:active {
   transform: scale(0.95);
 }
+
+.calculator-history {
+  background-color: #1e1e1e;
+  color: #ccc;
+  font-size: 1.4rem;
+  padding: 10px 15px;
+  max-height: 120px;
+  overflow-y: auto;
+  text-align: right;
+  border-bottom: 1px solid #333;
+}
+
+.calculator-history .history-item {
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0.85;
+}
+
+.calculator-history .history-item:last-child {
+  border-bottom: none;
+}
